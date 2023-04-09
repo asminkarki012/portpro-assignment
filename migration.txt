@@ -1,0 +1,27 @@
+query: SELECT VERSION() AS `version`
+query: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'testDB' AND `TABLE_NAME` = 'migrations'
+query: SELECT * FROM `testDB`.`migrations` `migrations` ORDER BY `id` DESC
+
+
+migrations for name
+query: START TRANSACTION
+query: ALTER TABLE `user` ADD `name` varchar(255) NOT NULL
+query: INSERT INTO `testDB`.`migrations`(`timestamp`, `name`) VALUES (?, ?) -- PARAMETERS: [1681008281018,"MigrationName1681008281018"]
+Migration MigrationName1681008281018 has been  executed successfully.
+query: COMMIT
+
+migration for profilePic
+query: START TRANSACTION
+query: ALTER TABLE `user` ADD `profilePic` varchar(255) NOT NULL
+query: INSERT INTO `testDB`.`migrations`(`timestamp`, `name`) VALUES (?, ?) -- PARAMETERS: [1681008444427,"MigrationProfilePic1681008444427"]
+Migration MigrationProfilePic1681008444427 has been  executed successfully.
+query: COMMIT
+
+migration for createdAt and updatedAt
+query: START TRANSACTION
+query: ALTER TABLE `user` ADD `createdAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+query: ALTER TABLE `user` ADD `updatedAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
+query: INSERT INTO `testDB`.`migrations`(`timestamp`, `name`) VALUES (?, ?) -- PARAMETERS: [1681008521724,"MigrationCreatedAtUpdatedAt1681008521724"]
+Migration MigrationCreatedAtUpdatedAt1681008521724 has been  executed successfully.
+query: COMMIT
+
